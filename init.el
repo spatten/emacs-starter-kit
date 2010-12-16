@@ -74,3 +74,6 @@
   (mapc #'load (directory-files user-specific-dir nil ".*el$")))
 
 ;;; init.el ends here
+(put 'upcase-region 'disabled nil)
+
+(put 'downcase-region 'disabled nil)
