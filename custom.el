@@ -2,6 +2,11 @@
 (require 'textmate)
 (textmate-mode)
 
+(setq load-path (cons  "/usr/local/Cellar/erlang/R14B/lib/erlang/lib/tools-2.6.6.1/emacs" load-path))
+      (setq erlang-root-dir "/usr/local/Cellar/erlang/R14B/lib/erlang")
+      (setq exec-path (cons "/usr/local/bin" exec-path))
+      (require 'erlang-start)
+
 (require 'haml-mode)
 
 (setq standard-indent 2)
@@ -33,6 +38,15 @@
   ;; If there is more than one, they won't work right.
  )
 
+(add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
+(require 'coffee-mode)
+
+
+(add-to-list 'load-path "~/.emacs.d/vendor/mustache-mode.el")
+(setq auto-mode-alist (cons '("\\.tpl$" . tpl-mode) auto-mode-alist))
+(autoload 'tpl-mode "tpl-mode" "Major mode for editing CTemplate files." t)
+;; (require 'mustache)
+
  ;; from http://www.enigmacurry.com/2008/12/26/emacs-ansi-term-tricks/
 (require 'term)
 (defun visit-ansi-term ()
@@ -62,3 +76,12 @@
             (ansi-term term-cmd))
         (ansi-term term-cmd)))))
 (global-set-key (kbd "<f2>") 'visit-ansi-term)
+
+;; Haskell!!
+;; You can only pick one of the indentation modes
+(load "haskell-mode/haskell-site-file")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+
