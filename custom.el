@@ -41,6 +41,11 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
 (require 'coffee-mode)
 
+;; Lisp-flavored Erlang
+(add-to-list 'load-path "~/.emacs.d/vendor/lfe")
+(require 'lfe-mode)
+(add-to-list 'auto-mode-alist '("\.lfe$" . lfe-mode))
+(require 'lfe-start)
 
 (add-to-list 'load-path "~/.emacs.d/vendor/mustache-mode.el")
 (setq auto-mode-alist (cons '("\\.tpl$" . tpl-mode) auto-mode-alist))
@@ -84,4 +89,3 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
-
