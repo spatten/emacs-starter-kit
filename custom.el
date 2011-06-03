@@ -89,3 +89,9 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+
+
+; make whitespace-mode use just basic coloring
+(setq whitespace-style (quote ( spaces tabs newline space-mark tab-mark newline-mark)))
+; turn on whitespace mode globally
+(global-whitespace-mode 1)
