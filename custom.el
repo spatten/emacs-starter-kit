@@ -2,8 +2,8 @@
 (require 'textmate)
 (textmate-mode)
 
-(setq load-path (cons  "/usr/local/Cellar/erlang/R14B/lib/erlang/lib/tools-2.6.6.1/emacs" load-path))
-      (setq erlang-root-dir "/usr/local/Cellar/erlang/R14B/lib/erlang")
+(setq load-path (cons  "/usr/local/Cellar/erlang/R14B03/lib/erlang/lib/tools-2.6.6.4/emacs" load-path))
+      (setq erlang-root-dir "/usr/local/Cellar/erlang/R14B03/lib/erlang")
       (setq exec-path (cons "/usr/local/bin" exec-path))
       (require 'erlang-start)
 
