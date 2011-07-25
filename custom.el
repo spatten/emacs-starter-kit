@@ -36,7 +36,8 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:stipple nil :background "White" :foreground "Black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "apple" :family "Anonymous_Pro"))))
+ '(nobreak-space ((((class color) (min-colors 88)) (:inherit escape-glyph :weight extra-light)))))
 
 (add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
 (require 'coffee-mode)
@@ -90,8 +91,27 @@
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
-
-; make whitespace-mode use just basic coloring
-(setq whitespace-style (quote ( spaces tabs newline space-mark tab-mark newline-mark)))
+;; settings help from http://stackoverflow.com/questions/293761/how-do-i-make-emacs-show-blank-spaces
+;; make whitespace-mode use just basic coloring
+(setq whitespace-style (quote (face spaces newline tabs space-mark tab-mark newline-mark)))
+;; http://pastebin.com/ieAcvLTJ
+ (make-face 'whitespace-light-face)
+  (set-face-attribute 'whitespace-light-face nil
+                      :background nil
+                      :foreground "#f0f0f0"
+                      :weight 'ultra-light)
+  (setq whitespace-space 'whitespace-light-face)
+;; (setq whitespace-hspace 'underline)
+;; (setq whitespace-display-mappings
+;;           '((space-mark   ?\    [?\xB7]     [?.])	; space
+;;             (space-mark   ?\xA0 [?\xA4]     [?_])	; hard space
+;;             (newline-mark ?\n   [?\xB6 ?\n] [?$ ?\n])	; end-of-line
+;;             ))
 ; turn on whitespace mode globally
 (global-whitespace-mode 1)
+
+;; SLIME (lisp REPL)
+(add-to-list 'load-path "~/.emacs.d/slime/")  ; your SLIME directory
+(setq inferior-lisp-program "/usr/local/bin/sbcl") ; your Lisp system
+(require 'slime)
+(slime-setup '(slime-fancy))
