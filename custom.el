@@ -93,25 +93,41 @@
 
 ;; settings help from http://stackoverflow.com/questions/293761/how-do-i-make-emacs-show-blank-spaces
 ;; make whitespace-mode use just basic coloring
-(setq whitespace-style (quote (face spaces newline tabs space-mark tab-mark newline-mark)))
+;; (setq whitespace-style (quote (face spaces newline tabs space-mark tab-mark newline-mark)))
 ;; http://pastebin.com/ieAcvLTJ
  (make-face 'whitespace-light-face)
   (set-face-attribute 'whitespace-light-face nil
                       :background nil
-                      :foreground "#f0f0f0"
+                      :foreground "#909090"
                       :weight 'ultra-light)
-  (setq whitespace-space 'whitespace-light-face)
-;; (setq whitespace-hspace 'underline)
-;; (setq whitespace-display-mappings
-;;           '((space-mark   ?\    [?\xB7]     [?.])	; space
-;;             (space-mark   ?\xA0 [?\xA4]     [?_])	; hard space
-;;             (newline-mark ?\n   [?\xB6 ?\n] [?$ ?\n])	; end-of-line
-;;             ))
-; turn on whitespace mode globally
-(global-whitespace-mode 1)
+(setq whitespace-trailing 'whitespace-light-face)
+(setq trailing-whitespace 'whitespace-light-face)
+(setq show-trailing-whitespace 1)
+;; (setq whitespace-space 'whitespace-light-face)  
+; make whitespace-mode use just basic coloring
+(setq whitespace-style (quote
+  ( tabs newline space-mark tab-mark newline-mark face)))
+(setq whitespace-hspace 'underline)    
+(setq whitespace-display-mappings
+          '((space-mark   ?\    [? ]     [? ])	; space
+            (space-mark   ?\xA0 [?\xA4]     [? ])	; hard space
+            (trailing-space-mark   ?\    [?\xB7]     [?.])	; trailing space
+            (newline-mark ?\n   [?\xB6 ?\n] [?$ ?\n])	; end-of-line
+            ))   
+;; ; turn on whitespace mode globally
+(global-whitespace-mode 1)   
 
 ;; SLIME (lisp REPL)
 (add-to-list 'load-path "~/.emacs.d/slime/")  ; your SLIME directory
 (setq inferior-lisp-program "/usr/local/bin/sbcl") ; your Lisp system
 (require 'slime)
 (slime-setup '(slime-fancy))
+
+(load "my_methods")
+
+;; set scheme interpreter. Run with "M-x run-scheme"
+;; Then, you can send s-expressions to the interpreter from another window with
+;; C-x C-e (put your cursor at the end of an S-expression then do this)
+;; C-c C-r (send the highlighted region to the scheme interpreter)
+;; from http://community.schemewiki.org/?emacs-tutorial
+(setq scheme-program-name "gsi -:d-")
