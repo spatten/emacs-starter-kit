@@ -147,3 +147,20 @@
 
 (when window-system
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
+
+;; Use PCRE regexes instead of emacs regexes
+(load "~/.emacs.d/vendor/pcre2el/pcre2el.el")
+(global-set-key [(meta %)] 'pcre-query-replace-regexp)
+(global-set-key [(ctrl meta %)] 'pcre-query-replace-regexp)
+
+;; full-ack extension (http://nschum.de/src/emacs/full-ack/)
+(add-to-list 'load-path "~/.emacs.d/vendor/full-ack.el")
+(autoload 'ack-same "full-ack" nil t)
+(autoload 'ack "full-ack" nil t)
+(autoload 'ack-find-same-file "full-ack" nil t)
+(autoload 'ack-find-file "full-ack" nil t)
+
+;; disable minimize window
+(global-unset-key "\C-x\C-z")
+;; (setq mac-command-modifier 'super) ; sets the Command key as Super, but this is done already, so only left if I move to Unix or something crazy like that.
+(global-unset-key (kbd "s-m"))
