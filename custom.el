@@ -2,10 +2,10 @@
 (require 'textmate)
 (textmate-mode)
 
-(setq load-path (cons  "/usr/local/Cellar/erlang/R14B03/lib/erlang/lib/tools-2.6.6.4/emacs" load-path))
-      (setq erlang-root-dir "/usr/local/Cellar/erlang/R14B03/lib/erlang")
-      (setq exec-path (cons "/usr/local/bin" exec-path))
-      (require 'erlang-start)
+;; (setq load-path (cons  "/usr/local/Cellar/erlang/R14B03/lib/erlang/lib/tools-2.6.6.4/emacs" load-path))
+;;       (setq erlang-root-dir "/usr/local/Cellar/erlang/R14B03/lib/erlang")
+;;       (setq exec-path (cons "/usr/local/bin" exec-path))
+;;       (require 'erlang-start)
 
 (require 'haml-mode)
 
@@ -14,6 +14,9 @@
 (mouse-wheel-mode t)
 
 (global-linum-mode)
+;; format for line numbers
+(setq linum-format "%3d")
+
 
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
@@ -25,22 +28,29 @@
 
 (auto-fill-mode 0)
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ ;; '(fringe-mode (quote (1 . 1)) nil (fringe))
  '(markdown-command "/usr/local/bin/markdown")
  '(nxml-char-ref-display-glyph-flag nil))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:stipple nil :background "White" :foreground "Black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "apple" :family "Anonymous_Pro"))))
  '(nobreak-space ((((class color) (min-colors 88)) (:inherit escape-glyph :weight extra-light)))))
 
 (add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
 (require 'coffee-mode)
+
+;; Use Lorem-ipsum like this:
+;; M-5 M-x Lorem-ipsum-insert-paragraphs
+;; This will insert 5 paras of Lorem Ipsum text
+(add-to-list 'load-path "~/.emacs.d/vendor")
+(require 'lorem-ipsum)
 
 ;; Lisp-flavored Erlang
 (add-to-list 'load-path "~/.emacs.d/vendor/lfe")
@@ -164,3 +174,11 @@
 (global-unset-key "\C-x\C-z")
 ;; (setq mac-command-modifier 'super) ; sets the Command key as Super, but this is done already, so only left if I move to Unix or something crazy like that.
 (global-unset-key (kbd "s-m"))
+
+;; from http://kieranhealy.org/esk/starter-kit-bindings.html
+;; resizing 'windows' (i.e., inside the frame)
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)  
+
