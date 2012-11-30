@@ -1,5 +1,9 @@
 (load "~/.emacs.d/movelines.el")
 
+(add-to-list 'custom-theme-load-path "~/.emacs.d/vendor/emacs-color-theme-solarized")
+(load-theme 'solarized-light t)
+
+
 (add-to-list 'load-path "~/.emacs.d/vendor/textmate.el")
 (require 'textmate)
 (textmate-mode)
@@ -37,17 +41,11 @@
  ;; '(fringe-mode (quote (1 . 1)) nil (fringe))
  '(markdown-command "/usr/local/bin/markdown")
  '(nxml-char-ref-display-glyph-flag nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil :background "White" :foreground "Black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "apple" :family "Anonymous_Pro"))))
- '(nobreak-space ((((class color) (min-colors 88)) (:inherit escape-glyph :weight extra-light)))))
 
 (add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
 (require 'coffee-mode)
 
+(set-face-attribute 'default nil :font "Anonymous Pro")
 ;; Use Lorem-ipsum like this:
 ;; M-5 M-x Lorem-ipsum-insert-paragraphs
 ;; This will insert 5 paras of Lorem Ipsum text
