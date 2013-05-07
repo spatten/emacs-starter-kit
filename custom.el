@@ -66,6 +66,13 @@
 (autoload 'tpl-mode "tpl-mode" "Major mode for editing CTemplate files." t)
 ;; (require 'mustache)
 
+
+;; Trim whitespace on save
+(require 'ws-trim)
+(global-ws-trim-mode t)
+(set-default 'ws-trim-level 2)
+(setq ws-trim-global-modes '(guess (not message-mode eshell-mode)))
+
 ;; settings help from http://stackoverflow.com/questions/293761/how-do-i-make-emacs-show-blank-spaces
 ;; make whitespace-mode use just basic coloring
 ;; (setq whitespace-style (quote (face spaces newline tabs space-mark tab-mark newline-mark)))
@@ -78,28 +85,28 @@
 (setq whitespace-trailing 'whitespace-light-face)
 (setq trailing-whitespace 'whitespace-light-face)
 (setq show-trailing-whitespace 1)
-;; (setq whitespace-space 'whitespace-light-face)  
+;; (setq whitespace-space 'whitespace-light-face)
 ; make whitespace-mode use just basic coloring
 (setq whitespace-style (quote
   ( tabs newline space-mark tab-mark newline-mark face)))
-(setq whitespace-hspace 'underline)    
+(setq whitespace-hspace 'underline)
 (setq whitespace-display-mappings
           '((space-mark   ?\    [? ]     [? ])	; space
             (space-mark   ?\xA0 [?\xA4]     [? ])	; hard space
             (trailing-space-mark   ?\    [?\xB7]     [?.])	; trailing space
             (newline-mark ?\n   [?\xB6 ?\n] [?$ ?\n])	; end-of-line
-            ))   
+            ))
 ;; ; turn on whitespace mode globally
-(global-whitespace-mode 1)   
-;; 
+(global-whitespace-mode 1)
+;;
 ;; ;; SLIME (lisp REPL)
 ;; (add-to-list 'load-path "~/.emacs.d/slime/")  ; your SLIME directory
 ;; (setq inferior-lisp-program "/usr/local/bin/sbcl") ; your Lisp system
 ;; (require 'slime)
 ;; (slime-setup '(slime-fancy))
-;; 
+;;
 ;; (load "my_methods")
-;; 
+;;
 ;; ;; set scheme interpreter. Run with "M-x run-scheme"
 ;; ;; Then, you can send s-expressions to the interpreter from another window with
 ;; ;; C-x C-e (put your cursor at the end of an S-expression then do this)
@@ -107,9 +114,9 @@
 ;; ;; from http://community.schemewiki.org/?emacs-tutorial
 ;; (setq scheme-program-name "gsi -:d-")
 ;; ;; (setq scheme-program-name "mzscheme")
-;; 
+;;
 (server-start)
-;; 
+;;
 ;; ;; http://nileshk.com/2009/06/13/prompt-before-closing-emacs.html
 (defun ask-before-closing ()
   "Ask whether or not to close, and then close if y was pressed"
@@ -122,24 +129,24 @@
 
 (when window-system
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
-;; 
+;;
 ;; ;; Use PCRE regexes instead of emacs regexes
 (load "~/.emacs.d/vendor/pcre2el/pcre2el.el")
 (global-set-key [(meta %)] 'pcre-query-replace-regexp)
 (global-set-key [(ctrl meta %)] 'pcre-query-replace-regexp)
-;; 
+;;
 ;; ;; disable minimize window
 (global-unset-key "\C-x\C-z")
 ;; (setq mac-command-modifier 'super) ; sets the Command key as Super, but this is done already, so only left if I move to Unix or something crazy like that.
 (global-unset-key (kbd "s-m"))
-;; 
+;;
 ;; ;; from http://kieranhealy.org/esk/starter-kit-bindings.html
 ;; ;; resizing 'windows' (i.e., inside the frame)
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
-(global-set-key (kbd "S-C-<up>") 'enlarge-window)  
-;; 
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+;;
 
 (require 'package)
 (add-to-list 'package-archives
