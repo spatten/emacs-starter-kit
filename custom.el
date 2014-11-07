@@ -69,7 +69,8 @@
 
 ;; Trim whitespace on save
 (require 'ws-trim)
-(global-ws-trim-mode t)
+(setq ws-trim-global-modes '(guess (Info-mode) (not c-mode c++-mode markdown-mode)))
+;; (global-ws-trim-mode t)
 (set-default 'ws-trim-level 2)
 (setq ws-trim-global-modes '(guess (not message-mode eshell-mode)))
 
